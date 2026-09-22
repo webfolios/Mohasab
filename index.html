@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>محاسبك عن بُعد — خدمات محاسبية احترافية لمنشأتك</title>
+<meta name="description" content="محاسبك عن بُعد لخدمة منشأتك باحتراف وبأقل تكلفة: مسك حسابات، إعداد قوائم مالية، إقرار ضريبي، مراجعة حسابات واستشارات مالية.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F8F7;
+    --surface:#FFFFFF;
+    --surface-alt:#EEF3F1;
+    --ink:#16231F;
+    --ink-soft:#4B5C57;
+    --ink-faint:#7C8B86;
+    --accent:#0E6B57;
+    --accent-dark:#0A4A3D;
+    --accent-tint:#E4F1EC;
+    --gold:#AD8A3B;
+    --line:#DBE5E1;
+    --radius-sm:6px;
+    --radius-md:10px;
+    --maxw:1180px;
+    --shadow:0 1px 2px rgba(15,35,30,0.04);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    font-family:"IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{margin:0; padding:0; list-style:none;}
+  h1,h2,h3,p{margin:0;}
+  section{padding-block:clamp(3.2rem, 6vw, 6rem);}
+
+  .wrap{
+    width:100%;
+    max-width:var(--maxw);
+    margin-inline:auto;
+    padding-inline:clamp(1.25rem, 4vw, 2.5rem);
+  }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .eyebrow-plain{
+    font-size:0.95rem;
+    color:var(--accent);
+    font-weight:600;
+    margin-block-end:0.6rem;
+  }
+
+  h2.section-title{
+    font-size:clamp(1.5rem, 3vw, 2.15rem);
+    font-weight:700;
+    color:var(--ink);
+    max-width:34ch;
+  }
+  .section-lede{
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    max-width:56ch;
+    margin-block-start:0.8rem;
+  }
+  .section-head{
+    display:flex;
+    flex-direction:column;
+    gap:0.4rem;
+    margin-block-end:clamp(2rem, 4vw, 3rem);
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.5rem;
+    padding:0.85rem 1.7rem;
+    border-radius:var(--radius-sm);
+    font-weight:600;
+    font-size:0.98rem;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:background-color .15s ease, color .15s ease, border-color .15s ease, transform .05s ease;
+    white-space:nowrap;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{
+    background:var(--accent);
+    color:#fff;
+  }
+  .btn-primary:hover{background:var(--accent-dark);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border-color:var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+  .btn-on-dark{
+    background:#fff;
+    color:var(--accent-dark);
+  }
+  .btn-on-dark:hover{background:var(--accent-tint);}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(246,248,247,0.92);
+    backdrop-filter:saturate(180%) blur(8px);
+    border-block-end:1px solid var(--line);
+  }
+  .site-header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    min-height:68px;
+  }
+  .brand{
+    font-weight:700;
+    font-size:1.15rem;
+    color:var(--accent-dark);
+  }
+  .brand span{color:var(--gold);}
+
+  nav.main-nav ul{
+    display:flex;
+    align-items:center;
+    gap:1.9rem;
+  }
+  nav.main-nav a{
+    font-size:0.95rem;
+    color:var(--ink-soft);
+    font-weight:500;
+    transition:color .15s ease;
+  }
+  nav.main-nav a:hover{color:var(--accent);}
+
+  .header-actions{display:flex; align-items:center; gap:1rem;}
+  .nav-cta{display:none;}
+
+  .menu-toggle{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;height:42px;
+    border-radius:var(--radius-sm);
+    border:1px solid var(--line);
+    background:var(--surface);
+  }
+  .menu-toggle svg{width:20px;height:20px;}
+
+  #mobile-nav{
+    display:none;
+    border-block-end:1px solid var(--line);
+    background:var(--surface);
+  }
+  #mobile-nav.open{display:block;}
+  #mobile-nav ul{display:flex; flex-direction:column;}
+  #mobile-nav a{
+    display:block;
+    padding:0.9rem clamp(1.25rem,4vw,2.5rem);
+    border-block-end:1px solid var(--line);
+    font-weight:500;
+    color:var(--ink-soft);
+  }
+  #mobile-nav .mobile-cta{padding:1rem clamp(1.25rem,4vw,2.5rem) 1.4rem;}
+
+  @media (min-width:900px){
+    nav.main-nav{display:block;}
+    .nav-cta{display:inline-flex;}
+    .menu-toggle{display:none;}
+    #mobile-nav{display:none !important;}
+  }
+  @media (max-width:899px){
+    nav.main-nav{display:none;}
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding-block-start:clamp(3.5rem, 8vw, 6.5rem);
+    padding-block-end:clamp(3rem, 7vw, 5.5rem);
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 47px,
+        var(--line) 47px,
+        var(--line) 48px
+      ),
+      var(--bg);
+    overflow:hidden;
+    border-block-end:1px solid var(--line);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset-inline-end:-10%;
+    inset-block-start:-15%;
+    width:60%;
+    aspect-ratio:1/1;
+    background:radial-gradient(circle, var(--accent-tint) 0%, transparent 70%);
+    z-index:0;
+  }
+  .hero .wrap{position:relative; z-index:1;}
+  .hero-inner{
+    max-width:44rem;
+    animation:rise .7s ease both;
+  }
+  @keyframes rise{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 5.2vw, 3.4rem);
+    font-weight:700;
+    color:var(--accent-dark);
+    letter-spacing:-0.01em;
+  }
+  .hero .tagline{
+    margin-block-start:1.1rem;
+    font-size:clamp(1.05rem, 2vw, 1.3rem);
+    color:var(--ink-soft);
+    max-width:38ch;
+  }
+  .hero-ctas{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.9rem;
+    margin-block-start:2.1rem;
+  }
+  .value-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.6rem 1.6rem;
+    margin-block-start:2.6rem;
+    padding-block-start:1.6rem;
+    border-block-start:1px solid var(--line);
+  }
+  .value-chips li{
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+  }
+  .value-chips svg{width:18px; height:18px; color:var(--accent); flex-shrink:0;}
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    gap:2.5rem;
+    align-items:start;
+  }
+  @media (min-width:800px){
+    .about-grid{grid-template-columns:1.1fr 0.9fr;}
+  }
+  .about-text p + p{margin-block-start:1rem;}
+  .about-text{color:var(--ink-soft); font-size:1.02rem;}
+  .about-list{
+    display:flex;
+    flex-direction:column;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+  }
+  .about-list li{
+    display:flex;
+    gap:0.9rem;
+    align-items:flex-start;
+    padding:1.1rem 1.3rem;
+    border-block-end:1px solid var(--line);
+    font-size:0.96rem;
+  }
+  .about-list li:last-child{border-block-end:none;}
+  .about-list svg{width:20px; height:20px; color:var(--accent); flex-shrink:0; margin-block-start:2px;}
+  .about-list strong{display:block; font-weight:600; margin-block-end:0.15rem;}
+  .about-list span.desc{color:var(--ink-faint); font-size:0.88rem;}
+
+  /* ---------- Services (ledger rows) ---------- */
+  .services{background:var(--surface-alt);}
+  .ledger{
+    border-block-start:1px solid var(--line);
+  }
+  .ledger-row{
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:1.1rem 1.4rem;
+    padding-block:1.5rem;
+    border-block-end:1px solid var(--line);
+    align-items:start;
+  }
+  .ledger-row .code{
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--gold);
+    padding-block-start:0.15rem;
+    min-width:2.2rem;
+  }
+  .ledger-row h3{
+    font-size:1.05rem;
+    font-weight:600;
+  }
+  .ledger-row p{
+    color:var(--ink-soft);
+    font-size:0.94rem;
+    margin-block-start:0.35rem;
+    max-width:60ch;
+  }
+  @media (min-width:700px){
+    .ledger-row{grid-template-columns:2.5rem 1fr;}
+  }
+
+  /* ---------- Pricing ---------- */
+  .pricing-cols{
+    display:grid;
+    gap:1.8rem;
+  }
+  @media (min-width:760px){
+    .pricing-cols{grid-template-columns:repeat(3,1fr);}
+  }
+  .pricing-col{
+    padding-inline-start:1.4rem;
+    border-inline-start:2px solid var(--line);
+  }
+  .pricing-col h3{
+    font-size:1.05rem;
+    font-weight:600;
+    color:var(--accent-dark);
+  }
+  .pricing-col p{
+    color:var(--ink-soft);
+    font-size:0.94rem;
+    margin-block-start:0.5rem;
+  }
+  .pricing-note{
+    margin-block-start:2.4rem;
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:1.3rem 1.5rem;
+    font-size:0.94rem;
+    color:var(--ink-soft);
+    display:flex;
+    gap:0.8rem;
+    align-items:flex-start;
+  }
+  .pricing-note svg{width:20px;height:20px;color:var(--gold); flex-shrink:0; margin-block-start:2px;}
+
+  /* ---------- FAQ ---------- */
+  .faq-list{border-block-start:1px solid var(--line);}
+  .faq-list details{
+    border-block-end:1px solid var(--line);
+    padding-block:1.1rem;
+  }
+  .faq-list summary{
+    cursor:pointer;
+    list-style:none;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem;
+    font-weight:600;
+    font-size:1.02rem;
+  }
+  .faq-list summary::-webkit-details-marker{display:none;}
+  .faq-list summary .plus{
+    flex-shrink:0;
+    width:22px; height:22px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid var(--line);
+    border-radius:50%;
+    font-size:1rem;
+    color:var(--accent);
+  }
+  .faq-list details[open] summary .plus{transform:rotate(45deg);}
+  .faq-list p{
+    color:var(--ink-soft);
+    font-size:0.95rem;
+    margin-block-start:0.8rem;
+    max-width:65ch;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:var(--accent-dark);
+    color:#fff;
+    text-align:center;
+  }
+  .final-cta h2{
+    font-size:clamp(1.5rem, 3vw, 2.1rem);
+    font-weight:700;
+    max-width:28ch;
+    margin-inline:auto;
+  }
+  .final-cta p{
+    color:#CFE3DC;
+    margin-block-start:0.9rem;
+    max-width:44ch;
+    margin-inline:auto;
+  }
+  .final-cta .btn-row{
+    margin-block-start:2rem;
+    display:flex;
+    justify-content:center;
+    gap:1rem;
+    flex-wrap:wrap;
+  }
+  .form-card{
+    margin:2.4rem auto 0;
+    max-width:700px;
+    background:var(--surface);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.18);
+  }
+  .form-card iframe{
+    display:block;
+    width:100%;
+    border:0;
+    height:2050px;
+  }
+  @media (min-width:700px){
+    .form-card iframe{height:1660px;}
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    color:#C9D3D0;
+    padding-block:3rem;
+    font-size:0.9rem;
+  }
+  .footer-grid{
+    display:grid;
+    gap:2rem;
+  }
+  @media (min-width:700px){
+    .footer-grid{grid-template-columns:1.3fr 1fr 1fr;}
+  }
+  .footer-brand{font-weight:700; color:#fff; font-size:1.05rem;}
+  .footer-brand + p{margin-block-start:0.7rem; color:#9AA8A4;}
+  footer h4{color:#fff; font-weight:600; font-size:0.92rem; margin-block-end:0.9rem;}
+  footer ul li{margin-block-end:0.55rem;}
+  footer a:hover{color:#fff;}
+  .footer-bottom{
+    margin-block-start:2.5rem;
+    padding-block-start:1.5rem;
+    border-block-start:1px solid #2B3A36;
+    color:#7F8E8A;
+    font-size:0.82rem;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.6rem 1.2rem;
+    justify-content:space-between;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="#top" class="brand">محاسبك <span>عن بُعد</span></a>
+    <nav class="main-nav" aria-label="التنقل الرئيسي">
+      <ul>
+        <li><a href="#about">من نحن</a></li>
+        <li><a href="#services">خدماتنا</a></li>
+        <li><a href="#pricing">الأسعار</a></li>
+        <li><a href="#process">كيف نعمل</a></li>
+        <li><a href="#faq">الأسئلة الشائعة</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="#order" class="btn btn-primary nav-cta">اطلب خدمتك الآن</a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="فتح القائمة">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-nav">
+    <ul>
+      <li><a href="#about">من نحن</a></li>
+      <li><a href="#services">خدماتنا</a></li>
+      <li><a href="#pricing">الأسعار</a></li>
+      <li><a href="#process">كيف نعمل</a></li>
+      <li><a href="#faq">الأسئلة الشائعة</a></li>
+    </ul>
+    <div class="mobile-cta">
+      <a href="#order" class="btn btn-primary" style="width:100%;">اطلب خدمتك الآن</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-inner">
+        <h1>محاسبك عن بُعد</h1>
+        <p class="tagline">محاسبك عن بُعد لخدمة منشأتك باحتراف وبأقل تكلفة</p>
+        <div class="hero-ctas">
+          <a href="#order" class="btn btn-primary">اطلب خدمتك الآن</a>
+          <a href="#services" class="btn btn-ghost">تعرف على خدماتنا</a>
+        </div>
+        <ul class="value-chips">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> بدون التزام توظيف دائم</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> طلب واستلام أونلاين بالكامل</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> محاسبون متخصصون حسب نوع الخدمة</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <div class="section-head">
+          <p class="eyebrow-plain">من نحن</p>
+          <h2 class="section-title">محاسب يتابع أعمالك دون أن تحتاج لتوظيفه بدوام كامل</h2>
+        </div>
+        <div class="about-text">
+          <p>محاسبك عن بُعد خدمة موجّهة لأصحاب المنشآت الصغيرة والمتوسطة والمستقلين، تمنحك محاسبًا مختصًا لتنفيذ ما تحتاجه من أعمال مالية دون التزامات التوظيف الكامل من راتب ومكتب وتأمينات.</p>
+          <p>تطلب الخدمة، تدفع قيمتها بوضوح، ويتولى محاسب مناسب لطبيعة طلبك التنفيذ والمراجعة قبل تسليمك النتيجة النهائية.</p>
+        </div>
+      </div>
+      <ul class="about-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg>
+          <div><strong>طلب واضح من البداية</strong><span class="desc">تحدد الخدمة والتفاصيل المطلوبة عبر نموذج واحد بسيط.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div><strong>دفع محدد قبل التنفيذ</strong><span class="desc">تعرف القيمة النهائية وتدفعها إلكترونيًا قبل بدء العمل.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.5-6 8-6s8 2 8 6"/></svg>
+          <div><strong>محاسب مختص بالمهمة</strong><span class="desc">يُسند طلبك لمن يناسب نوع الخدمة تحديدًا لا لأي متاح.</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="services">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow-plain">خدماتنا</p>
+        <h2 class="section-title">اختر ما تحتاجه من أعمال منشأتك المالية</h2>
+        <p class="section-lede">كل خدمة تُسند لمحاسب مختص بها، وتُنفذ حسب التفاصيل التي تحددها في نموذج الطلب.</p>
+      </div>
+      <div class="ledger">
+        <div class="ledger-row">
+          <span class="code">01</span>
+          <div><h3>إعداد القوائم المالية</h3><p>قوائم الدخل والمركز المالي والتدفقات النقدية، جاهزة للعرض على الجهات أو الشركاء.</p></div>
+        </div>
+        <div class="ledger-row">
+          <span class="code">02</span>
+          <div><h3>مسك الحسابات</h3><p>تسجيل ومتابعة العمليات المالية اليومية أو الشهرية لمنشأتك بشكل منظم ومستمر.</p></div>
+        </div>
+        <div class="ledger-row">
+          <span class="code">03</span>
+          <div><h3>الإقرار الضريبي</h3><p>إعداد وتقديم إقرارات ضريبة القيمة المضافة وفق الأنظمة المعمول بها.</p></div>
+        </div>
+        <div class="ledger-row">
+          <span class="code">04</span>
+          <div><h3>مراجعة الحسابات</h3><p>فحص السجلات والقيود الحالية والتأكد من دقتها قبل اعتمادها أو تسليمها.</p></div>
+        </div>
+        <div class="ledger-row">
+          <span class="code">05</span>
+          <div><h3>استشارات مالية</h3><p>توجيه حول تنظيم الأعمال المالية لمنشأتك واتخاذ قرارات مبنية على أرقام واضحة.</p></div>
+        </div>
+        <div class="ledger-row">
+          <span class="code">06</span>
+          <div><h3>خدمة أخرى</h3><p>لديك حاجة مالية لا تندرج ضمن ما سبق؟ صِفها في نموذج الطلب وسنعاود التواصل بشأنها.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow-plain">الأسعار</p>
+        <h2 class="section-title">تسعير واضح لكل طلب على حدة</h2>
+        <p class="section-lede">لا نعتمد باقات موحدة، لأن كل منشأة وكل طلب له حجم عمل مختلف. التسعير يبنى على تفاصيل طلبك تحديدًا.</p>
+      </div>
+      <div class="pricing-cols">
+        <div class="pricing-col">
+          <h3>يُحدَّد حسب الطلب</h3>
+          <p>السعر يعتمد على نوع الخدمة وحجم العمل والمدة المطلوبة، لا على باقة ثابتة مسبقًا.</p>
+        </div>
+        <div class="pricing-col">
+          <h3>يظهر قبل الدفع</h3>
+          <p>بعد إرسال نموذج الطلب، تظهر لك القيمة النهائية بوضوح قبل أي دفع.</p>
+        </div>
+        <div class="pricing-col">
+          <h3>بدون رسوم إضافية</h3>
+          <p>ما تدفعه هو ما هو معروض أمامك، دون بنود أو رسوم غير معلنة لاحقًا.</p>
+        </div>
+      </div>
+      <div class="pricing-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        <span>تحتاج فكرة مبدئية عن التكلفة قبل تعبئة الطلب؟ تواصل معنا مباشرة وسنساعدك بتقدير أولي.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why us -->
+  <section id="why">
+    <div class="wrap about-grid">
+      <div>
+        <div class="section-head">
+          <p class="eyebrow-plain">لماذا محاسب عن بُعد؟</p>
+          <h2 class="section-title">بديل عملي عن توظيف محاسب دائم</h2>
+        </div>
+        <div class="about-text">
+          <p>كثير من المنشآت الصغيرة لا تحتاج محاسبًا بدوام كامل، بل تحتاج من ينجز المهام المالية بدقة وفي وقتها. هنا يأتي دور محاسبك عن بُعد.</p>
+        </div>
+      </div>
+      <ul class="about-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div><strong>توفير في التكلفة</strong><span class="desc">تدفع مقابل الخدمة التي تحتاجها فقط، دون راتب أو مكتب دائم.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          <div><strong>تنفيذ ومتابعة أسرع</strong><span class="desc">تتابع حالة طلبك بوضوح من الاستلام حتى التسليم.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+          <div><strong>سرية وأمان</strong><span class="desc">بياناتك المالية تُعامل بخصوصية تامة طوال مراحل الطلب.</span></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+          <div><strong>طلب مرن أونلاين</strong><span class="desc">تطلب في أي وقت دون الحاجة لموعد أو زيارة مكتب.</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow-plain">الأسئلة الشائعة</p>
+        <h2 class="section-title">أسئلة يتكرر طرحها قبل الطلب</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>هل الخدمة مناسبة للمنشآت الصغيرة والمستقلين؟<span class="plus">+</span></summary>
+          <p>نعم، الخدمة مصممة خصيصًا لأصحاب المنشآت الصغيرة والمتوسطة والمستقلين الذين لا يحتاجون محاسبًا بدوام كامل.</p>
+        </details>
+        <details>
+          <summary>كم تستغرق مدة تنفيذ الطلب؟<span class="plus">+</span></summary>
+          <p>تختلف المدة حسب نوع الخدمة وحجم العمل، وتُحدَّد لك موعد تسليم واضح فور تأكيد الدفع.</p>
+        </details>
+        <details>
+          <summary>كيف تتم عملية الدفع؟<span class="plus">+</span></summary>
+          <p>بعد إرسال نموذج الطلب تظهر لك قيمة الخدمة، وتدفعها إلكترونيًا ليبدأ التنفيذ مباشرة.</p>
+        </details>
+        <details>
+          <summary>هل بياناتي المالية آمنة وسرية؟<span class="plus">+</span></summary>
+          <p>نعم، تُعامل جميع بيانات ومستندات منشأتك بسرية تامة ولا تُشارك مع أي جهة خارج نطاق تنفيذ طلبك.</p>
+        </details>
+        <details>
+          <summary>هل أحصل على متابعة بعد التسليم؟<span class="plus">+</span></summary>
+          <p>يمكنك التواصل بخصوص أي استفسار متعلق بالطلب بعد التسليم مباشرة عبر قنوات التواصل المتاحة.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA / order -->
+  <section id="order" class="final-cta">
+    <div class="wrap">
+      <h2>جاهز تبدأ؟ اطلب خدمتك الآن</h2>
+      <p>حدد الخدمة، عبّئ التفاصيل، وادفع بوضوح ليبدأ التنفيذ مباشرة.</p>
+      <div class="form-card">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfjEqhdAQOjOgn9K4prZNMW-OZV7PNDgy5JYlinZURRzfn-vw/viewform?embedded=true" title="نموذج طلب الخدمة">جارٍ التحميل…</iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <p class="footer-brand">محاسبك عن بُعد</p>
+      <p>محاسبك عن بُعد لخدمة منشأتك باحتراف وبأقل تكلفة.</p>
+    </div>
+    <div>
+      <h4>روابط سريعة</h4>
+      <ul>
+        <li><a href="#about">من نحن</a></li>
+        <li><a href="#services">خدماتنا</a></li>
+        <li><a href="#pricing">الأسعار</a></li>
+        <li><a href="#faq">الأسئلة الشائعة</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>تواصل معنا</h4>
+      <ul>
+        <li><a href="mailto:info@example.com">info@example.com</a></li>
+        <li><a href="#">حساب واتساب</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 محاسبك عن بُعد. جميع الحقوق محفوظة.</span>
+    <span>خدمات محاسبية عن بُعد للمنشآت الصغيرة والمتوسطة</span>
+  </div>
+</footer>
+
+<script>
+  var toggle = document.getElementById('menuToggle');
+  var mobileNav = document.getElementById('mobile-nav');
+  toggle.addEventListener('click', function(){
+    var isOpen = mobileNav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  mobileNav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      mobileNav.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
